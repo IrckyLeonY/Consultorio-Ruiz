@@ -61,11 +61,11 @@ public class RegistroPaciente extends javax.swing.JDialog {
         txtTelefono = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtTe = new javax.swing.JTextField();
+        txtN = new javax.swing.JTextField();
+        txtA = new javax.swing.JTextField();
+        txtC = new javax.swing.JTextField();
+        txtCo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         comboGenero = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -101,20 +101,20 @@ public class RegistroPaciente extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 90, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 140, -1));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 140, -1));
+        getContentPane().add(txtTe, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 140, -1));
+        getContentPane().add(txtN, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 140, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtAActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 140, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 140, -1));
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 140, -1));
+        getContentPane().add(txtA, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 140, -1));
+        getContentPane().add(txtC, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 140, -1));
+        getContentPane().add(txtCo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 140, -1));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 50, 40));
 
-        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "IMasculino", "Femenino" }));
+        comboGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
         getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 140, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 140, -1));
 
@@ -142,18 +142,18 @@ public class RegistroPaciente extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtAActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String Nombres = txtNombres.getText();
-        String Apellidos = txtApellidos.getText();
-        String Correo = txtCorElec.getText();
-        String Telefono = txtTelefono.getText();
+        String Nombres = txtN.getText();
+        String Apellidos = txtA.getText();
+        String Correo = txtCo.getText();
+        String Telefono = txtTe.getText();
         String Genero = comboGenero.getSelectedItem().toString();
-        String Cedula = txtCedula.getText();
+        String Cedula = txtC.getText();
         Date Fecha = jDateChooser1.getDate();
         SimpleDateFormat FechaNacimiento = new SimpleDateFormat("dd/MM/YYYY");
         String FecNac=FechaNacimiento.format(Fecha);
@@ -222,15 +222,15 @@ public class RegistroPaciente extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField txtA;
     private javax.swing.JLabel txtApellidos;
+    private javax.swing.JTextField txtC;
     private javax.swing.JLabel txtCedula;
+    private javax.swing.JTextField txtCo;
     private javax.swing.JLabel txtCorElec;
+    private javax.swing.JTextField txtN;
     private javax.swing.JLabel txtNombres;
+    private javax.swing.JTextField txtTe;
     private javax.swing.JLabel txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

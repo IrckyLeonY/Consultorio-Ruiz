@@ -13,6 +13,8 @@ package sistema.odontologico;
 import Fuentes.fuentes;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
@@ -47,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -87,6 +90,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
 
         jMenu1.setText("Registro");
 
@@ -139,31 +150,47 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String aux = jTextField1.getText().trim();
         String aux1 = jPasswordField1.getText().trim();
+        //Ingreso por Doctor
+        
         try{
             AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
+            RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
             if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
                 AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
+                PrincipalDoctor A = new PrincipalDoctor(this,true);
+                A.setVisible(true);
                 //Interfaz.AreaAdmin.append(AccessoAleatorioAdmin.getAdministrador(AccessoAleatorioAdmin.buscarRegistroUsuario(aux)).toString());
-                //JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+            }
+            else if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
+                RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalSecretaria A = new PrincipalSecretaria(this,true);
+                A.setVisible(true);
+                
             }
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        /*
         try{
             RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
             if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
                 RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
                 PrincipalSecretaria A = new PrincipalSecretaria(this,true);
                 A.setVisible(true);
-                //JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
             }
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        */
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -171,6 +198,37 @@ public class Login extends javax.swing.JFrame {
         AcercaDe acercareg = new AcercaDe(this,true);
         acercareg.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ 
+        try {
+            String aux = jTextField1.getText().trim();
+            String aux1 = jPasswordField1.getText().trim();
+            AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
+            RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
+            
+            if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
+                AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalDoctor A = new PrincipalDoctor(this,true);
+                A.setVisible(true);
+                //Interfaz.AreaAdmin.append(AccessoAleatorioAdmin.getAdministrador(AccessoAleatorioAdmin.buscarRegistroUsuario(aux)).toString());
+            }
+            else if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
+                RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalSecretaria A = new PrincipalSecretaria(this,true);
+                A.setVisible(true);
+                
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +267,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

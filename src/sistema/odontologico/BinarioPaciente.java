@@ -74,6 +74,21 @@ public class BinarioPaciente {
             return null;
         }
     }
+        //Metodo de Buscar por Id
+    public static int buscarCedula (String busqueda) throws IOException{
+        String aux;
+        if (busqueda == null){
+            return -1;
+        }
+        for (int i = 0; i < getNumeroRegistros(); i++){
+            flujo.seek(i*tamanoRegistros);
+            aux = getPaciente(i).getCedula();
+            if (aux.equals(busqueda)){
+                return i;
+            }
+        }
+        return -1;
+    }
     
 
     //Metodo que devuelve el RandomAcessFile

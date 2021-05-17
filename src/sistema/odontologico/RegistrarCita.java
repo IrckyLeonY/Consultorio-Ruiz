@@ -6,6 +6,11 @@
 package sistema.odontologico;
 
 import Fuentes.fuentes;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,10 +48,10 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
+        field3 = new javax.swing.JTextField();
+        field1 = new javax.swing.JTextField();
+        field2 = new javax.swing.JTextField();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -67,16 +72,16 @@ public class RegistrarCita extends javax.swing.JDialog {
 
         jLabel6.setText("Nombre: ");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 120, -1));
+        getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 120, -1));
 
-        jTextField2.setEditable(false);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 180, -1));
+        field3.setEditable(false);
+        getContentPane().add(field3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 180, -1));
 
-        jTextField3.setEditable(false);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 230, -1));
+        field1.setEditable(false);
+        getContentPane().add(field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 230, -1));
 
-        jTextField4.setEditable(false);
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 230, -1));
+        field2.setEditable(false);
+        getContentPane().add(field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 230, -1));
 
         jCalendar1.setBackground(new java.awt.Color(246, 245, 244));
         getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 460, 220));
@@ -91,12 +96,38 @@ public class RegistrarCita extends javax.swing.JDialog {
         jPanel1.add(Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
         jButton2.setText("Buscar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 80, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String aux = txtBuscar.getText();
+        try {
+            // TODO add your handling code here:
+        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = BinarioPaciente.buscarCedula(aux);
+        if( i==-1) {
+              JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
+              return;
+            }
+                field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
+                field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
+                field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
+                BinarioPaciente.cerrarArchivo();
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +173,9 @@ public class RegistrarCita extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cedula;
+    private javax.swing.JTextField field1;
+    private javax.swing.JTextField field2;
+    private javax.swing.JTextField field3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JCalendar jCalendar1;
@@ -150,9 +184,6 @@ public class RegistrarCita extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
