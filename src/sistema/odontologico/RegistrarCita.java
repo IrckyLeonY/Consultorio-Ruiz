@@ -6,7 +6,16 @@
 package sistema.odontologico;
 
 import Fuentes.fuentes;
+import com.itextpdf.text.BadElementException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,11 +61,14 @@ public class RegistrarCita extends javax.swing.JDialog {
         field3 = new javax.swing.JTextField();
         field1 = new javax.swing.JTextField();
         field2 = new javax.swing.JTextField();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         Cedula = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,13 +95,15 @@ public class RegistrarCita extends javax.swing.JDialog {
         field2.setEditable(false);
         getContentPane().add(field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 230, -1));
 
-        jCalendar1.setBackground(new java.awt.Color(246, 245, 244));
-        getContentPane().add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 460, 220));
-
         jPanel1.setBackground(new java.awt.Color(246, 245, 244));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 100, -1));
 
         Cedula.setText("Cedula:");
@@ -103,7 +117,19 @@ public class RegistrarCita extends javax.swing.JDialog {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 80, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 400));
+        jCalendar1.setBackground(new java.awt.Color(246, 245, 244));
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 460, 220));
+
+        jLabel4.setText("Codigo Cita");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+
+        jTextField1.setEditable(false);
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 180, -1));
+
+        jLabel5.setText("Elegir Fecha");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +155,71 @@ public class RegistrarCita extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            GenerarPDF(txtBuscar.getText());
+        }
+        catch(FileNotFoundException ex){
+            
+        } catch (DocumentException ex) {
+            Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void GenerarPDF (String nombre) throws FileNotFoundException, DocumentException, IOException {
+        FileOutputStream archivo = new FileOutputStream(nombre +".pdf");
+        Document documento = new Document();
+        PdfWriter.getInstance(documento, archivo);
+        /*
+        Image logo = Image.getInstance("logo.JPG");
+        PdfWriter.getInstance(documento, new FileOutputStream("logo.JPG"));
+        logo.setAlignment(Element.ALIGN_CENTER);
+        */
+        documento.open();
+        //documento.add(logo);
+        //Local
+        Paragraph parrafo1 = new Paragraph("Consultorio Estetics Dental");
+        parrafo1.setAlignment(0);
+        documento.add(parrafo1);
+        //Titulo
+        Paragraph parrafo = new Paragraph("Datos Pacientes");
+        parrafo.setAlignment(1);
+        documento.add(parrafo);
+        //Informacion
+        String aux = txtBuscar.getText();
+        try {
+            // TODO add your handling code here:
+        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = BinarioPaciente.buscarCedula(aux);
+        if( i==-1) {
+              JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
+              return;
+            }         
+                //field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
+                //field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
+                //field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
+                documento.add(new Paragraph("Nombre Paciente: "+BinarioPaciente.getPaciente(i).getNombres()+" "+BinarioPaciente.getPaciente(i).getApellidos()));
+                documento.add(new Paragraph("Cedula Paciente: "+BinarioPaciente.getPaciente(i).getCedula()));
+                documento.add(new Paragraph("Fe_Na Paciente: "+BinarioPaciente.getPaciente(i).getFecNac()));
+                documento.add(new Paragraph("Genero Paciente: "+BinarioPaciente.getPaciente(i).getGenero()));
+                documento.add(new Paragraph("Telefono Paciente: "+BinarioPaciente.getPaciente(i).getTelefono()));
+                documento.add(new Paragraph("Correo Paciente: "+BinarioPaciente.getPaciente(i).getCorreo()));
+                
+                BinarioPaciente.cerrarArchivo();
+        } catch (IOException ex) {
+            Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Paragraph parrafo2 = new Paragraph("NOTA: SE SOLICITA DE ANTEMANO VENIR 20 MINUTOS ANTES MMV HDP, CUIDATE EL OSICO");
+        parrafo1.setAlignment(0);
+        documento.add(parrafo2);
+        //Cierre
+        documento.close();
+        JOptionPane.showMessageDialog(null, "Archivo correctamente generado, porfavor ir a la carpeta","Informacion",  1);
+    }
     /**
      * @param args the command line arguments
      */
@@ -182,8 +273,11 @@ public class RegistrarCita extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
