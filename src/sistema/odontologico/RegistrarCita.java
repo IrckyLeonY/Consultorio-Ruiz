@@ -38,6 +38,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel6.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
+        jLabel4.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         Cedula.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
         jButton2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
@@ -118,7 +119,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 80, -1));
 
         jCalendar1.setBackground(new java.awt.Color(246, 245, 244));
-        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 460, 220));
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 250, 220));
 
         jLabel4.setText("Codigo Cita");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
@@ -127,7 +128,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 180, -1));
 
         jLabel5.setText("Elegir Fecha");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 190, -1, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 450));
 

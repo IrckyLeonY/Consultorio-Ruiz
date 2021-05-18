@@ -26,7 +26,7 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
         bAgendarCita.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         bAgendarCita1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src/Imagenes/paciente2.JPG");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel4, "src/Imagenes/actualizar.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel5, "src/Imagenes/paciente.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel6, "src/Imagenes/agenda.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel2, "src/Imagenes/iconu.png");
@@ -46,24 +46,19 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         bActualizarDatos = new javax.swing.JButton();
         bAgendarCita1 = new javax.swing.JButton();
         bAgendarCita = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(java.awt.Color.red);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 160, 160));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 170, 160));
-        jLabel5.getAccessibleContext().setAccessibleParent(jPanel1);
-
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 170, 160));
 
         bActualizarDatos.setBackground(new java.awt.Color(246, 245, 244));
         bActualizarDatos.setText("Registrar Paciente");
@@ -76,15 +71,20 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
                 bActualizarDatosActionPerformed(evt);
             }
         });
-        getContentPane().add(bActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 210, 30));
+        getContentPane().add(bActualizarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 210, 50));
 
         bAgendarCita1.setBackground(new java.awt.Color(246, 245, 244));
-        bAgendarCita1.setText("Agendar Cita");
+        bAgendarCita1.setText("Citas");
         bAgendarCita1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         bAgendarCita1.setBorderPainted(false);
         bAgendarCita1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         bAgendarCita1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        getContentPane().add(bAgendarCita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 210, 30));
+        bAgendarCita1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgendarCita1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bAgendarCita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 110, 210, 50));
 
         bAgendarCita.setBackground(new java.awt.Color(246, 245, 244));
         bAgendarCita.setText("Actualizar Datos");
@@ -96,7 +96,7 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
                 bAgendarCitaActionPerformed(evt);
             }
         });
-        getContentPane().add(bAgendarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 210, 30));
+        getContentPane().add(bAgendarCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 210, 50));
 
         jPanel1.setBackground(new java.awt.Color(246, 245, 244));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -104,6 +104,9 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
         jLabel1.setText("Secretaria");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 95, -1));
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 40, 40));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 180, 160));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 170, 160));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 170, 170, 160));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 410));
 
@@ -112,11 +115,21 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
 
     private void bAgendarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgendarCitaActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_bAgendarCitaActionPerformed
 
     private void bActualizarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarDatosActionPerformed
         // TODO add your handling code here:
+        RegistroPaciente Pas1 = new RegistroPaciente(this, true);
+        Pas1.setVisible(true);
     }//GEN-LAST:event_bActualizarDatosActionPerformed
+
+    private void bAgendarCita1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgendarCita1ActionPerformed
+        // TODO add your handling code here:
+        Citas ci1 = new Citas (this, true);
+        ci1.setVisible(true);
+       
+    }//GEN-LAST:event_bAgendarCita1ActionPerformed
 
     /**
      * @param args the command line arguments
