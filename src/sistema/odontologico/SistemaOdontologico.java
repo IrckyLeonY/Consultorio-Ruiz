@@ -17,7 +17,7 @@ public class SistemaOdontologico {
     public static void main(String[] args) {
         // TODO code application logic here
         Login A = new Login();
-        A.setSize(900,400);
+        A.setSize(900,450);
         A.setVisible(true);
     }
     

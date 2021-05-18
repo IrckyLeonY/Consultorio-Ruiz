@@ -23,10 +23,6 @@ public class Usuario {
         this.Correo_Electronico = Correo_Electronico;
         this.Celular = Celular;
     }
-
-    
-
-
     public String getNombre() {
         return Nombre;
     }

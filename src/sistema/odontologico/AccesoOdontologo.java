@@ -105,6 +105,21 @@ public class AccesoOdontologo {
         }
         return -1;
     }
+        public static int buscarCargo (String busqueda) throws IOException{
+        String aux;
+        if (busqueda == null){
+            return -1;
+        }
+        for (int i = 0; i < getNumeroRegistros(); i++){
+            flujo.seek(i*tamanoRegistros);
+            aux = getOdontologo(i).getCargo();
+            if (aux.equals(busqueda)){
+                return i; //retorna la posicion.
+            }
+        }
+        return -1;
+    }
+    
 
     //Metodo que devuelve el RandomAcessFile
     public static RandomAccessFile getFlujo() {

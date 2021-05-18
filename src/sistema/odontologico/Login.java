@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 80));
         //jLabel2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 40));
         //jLabel3.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 40));
-        jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
+        comboCargo.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel2, "src/Imagenes/diente.jpg");
     }
 
@@ -48,7 +48,9 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        comboCargo = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        combocargo = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -71,8 +73,8 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Contraseña*");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jLabel4.setText("Cargo*");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 280, 30));
@@ -80,15 +82,22 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 280, 30));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        comboCargo.setBackground(new java.awt.Color(204, 204, 204));
+        comboCargo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        comboCargo.setText("Ingresar");
+        comboCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                comboCargoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        jPanel1.add(comboCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("Contraseña*");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+
+        combocargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Odontologo", "Secretario" }));
+        jPanel1.add(combocargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 280, 40));
 
         jMenu1.setText("Registro");
 
@@ -124,7 +133,7 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
         );
 
         pack();
@@ -137,56 +146,99 @@ public class Login extends javax.swing.JFrame {
         A.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void comboCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCargoActionPerformed
         // TODO add your handling code here:
         String aux = jTextField1.getText().trim();
         String aux1 = jPasswordField1.getText().trim();
-        //Ingreso por Doctor
         
-        try{
+        String op = combocargo.getSelectedItem().toString();
+        
+        if (op.equals("Secretario")){
+            try{
                 RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
                 if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
                 RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
                 JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
                 PrincipalSecretaria A = new PrincipalSecretaria(this,true);
-                A.setVisible(true);
+                A.setVisible(true);  
             }
-            }
-        catch(IOException e) {
+        }
+            catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-                try{
-            AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
-            if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
+        }
+        else{
+            try{
+                AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
+                if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
                 AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
                 JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
                 PrincipalDoctor A = new PrincipalDoctor(this,true);
                 A.setVisible(true);
-                //Interfaz.AreaAdmin.append(AccessoAleatorioAdmin.getAdministrador(AccessoAleatorioAdmin.buscarRegistroUsuario(aux)).toString());
             }
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+        }
+        }
+        
         /*
+        
+        //Ingreso por Doctor
         try{
-            RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
-            if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
+            //RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
+            AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
+            JOptionPane.showMessageDialog(this, "entro 3", "Error", JOptionPane.ERROR_MESSAGE);
+                if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
+                AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
+                JOptionPane.showMessageDialog(this, AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getCargo());
+                    JOptionPane.showMessageDialog(this, "entro 4", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalDoctor A = new PrincipalDoctor(this,true);
+                A.setVisible(true);
+            /*
+                if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getCargo().equals("Secretario")){
+                    JOptionPane.showMessageDialog(this, "entro 1", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getCargo());
+                if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
                 RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
+                    JOptionPane.showMessageDialog(this, "entro 2", "Error", JOptionPane.ERROR_MESSAGE);
                 JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
                 PrincipalSecretaria A = new PrincipalSecretaria(this,true);
                 A.setVisible(true);
             }
+            */
+            //}
+            /*
+                 JOptionPane.showMessageDialog(this, AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getCargo());
+           
+                
+                    JOptionPane.showMessageDialog(this, "entro 3", "Error", JOptionPane.ERROR_MESSAGE);
+                if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
+                AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
+                    JOptionPane.showMessageDialog(this, "entro 4", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalDoctor A = new PrincipalDoctor(this,true);
+                A.setVisible(true);
+                //Interfaz.AreaAdmin.append(AccessoAleatorioAdmin.getAdministrador(AccessoAleatorioAdmin.buscarRegistroUsuario(aux)).toString());
+                
+            }   
+            
+              
+            
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
         */
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_comboCargoActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
@@ -230,11 +282,13 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton comboCargo;
+    private javax.swing.JComboBox<String> combocargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
