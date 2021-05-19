@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,14 +37,15 @@ public class RegistrarCita extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         tipofuentes = new fuentes();
-        jLabel6.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
+        jLabel7.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel4.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
+        jLabel6.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 50));
         Cedula.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
         jButton2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel3, "src/Imagenes/paciente2.JPG");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel3, "src/Imagenes/393052.png");
     }
 
     /**
@@ -57,7 +60,6 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         field3 = new javax.swing.JTextField();
         field1 = new javax.swing.JTextField();
@@ -69,7 +71,10 @@ public class RegistrarCita extends javax.swing.JDialog {
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,12 +84,7 @@ public class RegistrarCita extends javax.swing.JDialog {
 
         jLabel2.setText("Correo Electronico:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
-
-        jLabel3.setText("Foto");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 40));
-
-        jLabel6.setText("Nombre: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
         getContentPane().add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 120, -1));
 
         field3.setEditable(false);
@@ -119,16 +119,25 @@ public class RegistrarCita extends javax.swing.JDialog {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 80, -1));
 
         jCalendar1.setBackground(new java.awt.Color(246, 245, 244));
-        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 250, 220));
+        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 310, 220));
 
         jLabel4.setText("Codigo Cita");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
         jTextField1.setEditable(false);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 180, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, -1));
 
-        jLabel5.setText("Elegir Fecha");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, -1, -1));
+        jLabel7.setText("Nombre: ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        jLabel6.setText("Registrar Cita");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 240, 50));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ":00", ":15", ":30", ":45" }));
+        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 450));
 
@@ -139,16 +148,16 @@ public class RegistrarCita extends javax.swing.JDialog {
         String aux = txtBuscar.getText();
         try {
             // TODO add your handling code here:
-        SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
-        int i = SaveFilePaciente.buscarCedula(aux);
+        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = BinarioPaciente.buscarCedula(aux);
         if( i==-1) {
               JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
               return;
             }
-                field1.setText(SaveFilePaciente.getPaciente(i).getNombres()+SaveFilePaciente.getPaciente(i).getApellidos());
-                field2.setText(SaveFilePaciente.getPaciente(i).getTelefono());
-                field3.setText(SaveFilePaciente.getPaciente(i).getCorreo());
-                SaveFilePaciente.cerrarArchivo();
+                field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
+                field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
+                field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
+                BinarioPaciente.cerrarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -192,10 +201,15 @@ public class RegistrarCita extends javax.swing.JDialog {
         documento.add(parrafo);
         //Informacion
         String aux = txtBuscar.getText();
+        String hora = jComboBox1.getSelectedItem().toString();
+        String minuto = jComboBox2.getSelectedItem().toString();
+        Date Fecha = jCalendar1.getDate();
+        SimpleDateFormat FechaNacimiento = new SimpleDateFormat("dd/MM/YYYY");
+        String FecNac=FechaNacimiento.format(Fecha);
         try {
             // TODO add your handling code here:
-        SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
-        int i = SaveFilePaciente.buscarCedula(aux);
+        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = BinarioPaciente.buscarCedula(aux);
         if( i==-1) {
               JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
               return;
@@ -203,14 +217,15 @@ public class RegistrarCita extends javax.swing.JDialog {
                 //field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
                 //field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
                 //field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
-                documento.add(new Paragraph("Nombre Paciente: "+SaveFilePaciente.getPaciente(i).getNombres()+" "+SaveFilePaciente.getPaciente(i).getApellidos()));
-                documento.add(new Paragraph("Cedula Paciente: "+SaveFilePaciente.getPaciente(i).getCedula()));
-                documento.add(new Paragraph("Fe_Na Paciente: "+SaveFilePaciente.getPaciente(i).getFecNac()));
-                documento.add(new Paragraph("Genero Paciente: "+SaveFilePaciente.getPaciente(i).getGenero()));
-                documento.add(new Paragraph("Telefono Paciente: "+SaveFilePaciente.getPaciente(i).getTelefono()));
-                documento.add(new Paragraph("Correo Paciente: "+SaveFilePaciente.getPaciente(i).getCorreo()));
-                
-                SaveFilePaciente.cerrarArchivo();
+                documento.add(new Paragraph("Nombre Paciente: "+BinarioPaciente.getPaciente(i).getNombres()+" "+BinarioPaciente.getPaciente(i).getApellidos()));
+                documento.add(new Paragraph("Cedula Paciente: "+BinarioPaciente.getPaciente(i).getCedula()));
+                documento.add(new Paragraph("Fe_Na Paciente: "+BinarioPaciente.getPaciente(i).getFecNac()));
+                documento.add(new Paragraph("Genero Paciente: "+BinarioPaciente.getPaciente(i).getGenero()));
+                documento.add(new Paragraph("Telefono Paciente: "+BinarioPaciente.getPaciente(i).getTelefono()));
+                documento.add(new Paragraph("Correo Paciente: "+BinarioPaciente.getPaciente(i).getCorreo()));
+                documento.add(new Paragraph("Fecha cita:"+" "+ FecNac));
+                documento.add(new Paragraph("Hora cita:"+" "+ hora +" "+ minuto));
+                BinarioPaciente.cerrarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -219,7 +234,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         documento.add(parrafo2);
         //Cierre
         documento.close();
-        JOptionPane.showMessageDialog(null, "Archivo correctamente generado, porfavor ir a la carpeta","Informacion",  1);
+        JOptionPane.showMessageDialog(null, "Archivo correctamente generado, por favor ir a la carpeta","Informacion",  1);
     }
     /**
      * @param args the command line arguments
@@ -271,12 +286,14 @@ public class RegistrarCita extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JCalendar jCalendar1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtBuscar;
