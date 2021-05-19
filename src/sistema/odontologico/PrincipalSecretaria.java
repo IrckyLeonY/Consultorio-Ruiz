@@ -18,6 +18,9 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
      * Creates new form PrincipalSecretaria
      */
      fuentes tipofuentes;
+     public PrincipalSecretaria(){
+         
+     }
     public PrincipalSecretaria(java.awt.Frame parent, boolean modal) {
         initComponents();
         tipofuentes = new fuentes();

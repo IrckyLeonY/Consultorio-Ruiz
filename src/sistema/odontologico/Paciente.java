@@ -24,6 +24,15 @@ public class Paciente {
     private String FecNac;
           
 
+    public Paciente(){
+        Nombres = "";
+        Apellidos = "";
+        Correo = "";
+        Telefono = "";
+        Genero = "";
+        Cedula="";
+        FecNac="";
+    }
     public Paciente(String Nombre, String Apellido, String Correo_Electronico, String Celular, String Genero, String Cedula,String FecNac) {
         this.Nombres = Nombre;
         this.Apellidos = Apellido;

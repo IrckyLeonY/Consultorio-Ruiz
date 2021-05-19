@@ -16,6 +16,13 @@ public class Usuario {
     private String Correo_Electronico; //30 = 60 bytes 
     private int Celular; // 4bytes
 
+    public Usuario(){
+        Nombre = "";
+        Apellido = "";
+        Cargo = "";
+        Correo_Electronico = "";
+        Celular = 0;
+    }
     public Usuario(String Nombre, String Apellido, String Cargo, String Correo_Electronico, int Celular) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;

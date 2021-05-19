@@ -151,45 +151,20 @@ public class Login extends javax.swing.JFrame {
         String aux = jTextField1.getText().trim();
         String aux1 = jPasswordField1.getText().trim();
         String op = combocargo.getSelectedItem().toString();
-        
-        
-            try{
-                SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
-                SaveFileOdontologo.crearFileOdontologo(new File("odontologos.dat"));
-                if(SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getCargo().equals("Secretario")){
-                if (SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
-                SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getId().equals(aux)){
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalSecretaria A = new PrincipalSecretaria(this,true);
-                A.setVisible(true);}
-            }
-                JOptionPane.showMessageDialog(this,"1");
-                /*
-                else if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getCargo().equals("Odontologo")){
-                if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
-                SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalDoctor A = new PrincipalDoctor(this,true);
-                A.setVisible(true);
-                
-            }   
-                }
-                */
-            }
-            catch(IOException e) {
-            JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            catch(NullPointerException ex){
-                JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
-        
-        
-
-            
-        
+        Secretario secre = new Secretario();
+        Odontologo doc = new Odontologo();
+        if (op.equals("Secretario")){
+            secre.ValidarLogin(aux, aux1);
+            this.setVisible(false);
+            PrincipalSecretaria A = new PrincipalSecretaria(this,true);
+            A.setVisible(true); 
+        }
+        else if (op.equals("Odontologo")){
+            doc.ValidarLogin(aux, aux1);
+            this.setVisible(false);
+            PrincipalDoctor A = new PrincipalDoctor(this,true);
+            A.setVisible(true);
+        }
         /*
         if (op.equals("Secretario")){
             try{
@@ -230,6 +205,7 @@ public class Login extends javax.swing.JFrame {
             
         }
         */
+        
        
         
         
