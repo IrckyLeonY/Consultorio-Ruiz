@@ -45,9 +45,9 @@ public class SaveFilePaciente {
             //Agrega el registro al archivo
             flujo.writeUTF(paciente.getNombres());
             flujo.writeUTF(paciente.getApellidos());
-            flujo.writeUTF(paciente.getGenero());
             flujo.writeUTF(paciente.getCorreo());
             flujo.writeUTF(paciente.getTelefono());
+            flujo.writeUTF(paciente.getGenero());
             flujo.writeUTF(paciente.getCedula());
             flujo.writeUTF(paciente.getFecNac());
             

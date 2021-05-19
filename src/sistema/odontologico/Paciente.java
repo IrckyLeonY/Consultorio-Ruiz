@@ -84,4 +84,25 @@ public class Paciente {
                 
             }
     }
+    public int BuscarCedula(String cedula){
+        RegistrarCita A = new RegistrarCita();
+        try{
+            SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
+            int i = SaveFilePaciente.buscarCedula(cedula);
+            if( i==-1) {
+              JOptionPane.showMessageDialog(A, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
+              return -1;
+            }
+            else{
+                return i;
+            }
+        }
+        catch(IOException e) {
+        JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NullPointerException ex){
+        JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return -1;
+    }
 }

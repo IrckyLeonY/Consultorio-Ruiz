@@ -33,6 +33,9 @@ public class RegistrarCita extends javax.swing.JDialog {
      * Creates new form RegistrarCita
      */
     fuentes tipofuentes;
+    public RegistrarCita(){
+        
+    }
     public RegistrarCita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -146,8 +149,22 @@ public class RegistrarCita extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String aux = txtBuscar.getText();
+        Paciente pac = new Paciente();
+        try{
+            int i = pac.BuscarCedula(aux);
+            field1.setText(SaveFilePaciente.getPaciente(i).getNombres()+SaveFilePaciente.getPaciente(i).getApellidos());
+            field2.setText(SaveFilePaciente.getPaciente(i).getTelefono());
+            field3.setText(SaveFilePaciente.getPaciente(i).getCorreo());
+        }
+        catch(IOException e) {
+        JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NullPointerException ex){
+        JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        /*
         try {
-            // TODO add your handling code here:
+        // TODO add your handling code here:
         BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
         int i = BinarioPaciente.buscarCedula(aux);
         if( i==-1) {
@@ -161,6 +178,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -207,9 +225,9 @@ public class RegistrarCita extends javax.swing.JDialog {
         SimpleDateFormat FechaNacimiento = new SimpleDateFormat("dd/MM/YYYY");
         String FecNac=FechaNacimiento.format(Fecha);
         try {
-            // TODO add your handling code here:
-        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
-        int i = BinarioPaciente.buscarCedula(aux);
+        // TODO add your handling code here:
+        SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = SaveFilePaciente.buscarCedula(aux);
         if( i==-1) {
               JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
               return;
@@ -217,15 +235,15 @@ public class RegistrarCita extends javax.swing.JDialog {
                 //field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
                 //field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
                 //field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
-                documento.add(new Paragraph("Nombre Paciente: "+BinarioPaciente.getPaciente(i).getNombres()+" "+BinarioPaciente.getPaciente(i).getApellidos()));
-                documento.add(new Paragraph("Cedula Paciente: "+BinarioPaciente.getPaciente(i).getCedula()));
-                documento.add(new Paragraph("Fe_Na Paciente: "+BinarioPaciente.getPaciente(i).getFecNac()));
-                documento.add(new Paragraph("Genero Paciente: "+BinarioPaciente.getPaciente(i).getGenero()));
-                documento.add(new Paragraph("Telefono Paciente: "+BinarioPaciente.getPaciente(i).getTelefono()));
-                documento.add(new Paragraph("Correo Paciente: "+BinarioPaciente.getPaciente(i).getCorreo()));
+                documento.add(new Paragraph("Nombre Paciente: "+SaveFilePaciente.getPaciente(i).getNombres()+" "+SaveFilePaciente.getPaciente(i).getApellidos()));
+                documento.add(new Paragraph("Cedula Paciente: "+SaveFilePaciente.getPaciente(i).getCedula()));
+                documento.add(new Paragraph("Fe_Na Paciente: "+SaveFilePaciente.getPaciente(i).getFecNac()));
+                documento.add(new Paragraph("Genero Paciente: "+SaveFilePaciente.getPaciente(i).getGenero()));
+                documento.add(new Paragraph("Telefono Paciente: "+SaveFilePaciente.getPaciente(i).getTelefono()));
+                documento.add(new Paragraph("Correo Paciente: "+SaveFilePaciente.getPaciente(i).getCorreo()));
                 documento.add(new Paragraph("Fecha cita:"+" "+ FecNac));
                 documento.add(new Paragraph("Hora cita:"+" "+ hora +" "+ minuto));
-                BinarioPaciente.cerrarArchivo();
+                SaveFilePaciente.cerrarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }

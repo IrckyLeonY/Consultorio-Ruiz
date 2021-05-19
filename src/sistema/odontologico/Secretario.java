@@ -37,6 +37,18 @@ public class Secretario extends Usuario{
     public int getTamanoSecretario(){
         return getTamanoUsuario()+Id.length()*2+Contrasena.length()*2;
     }
+    public void RegistrarSecretario(String Id,String Contrasena,String Nombre,String Apellido,String Cargo,String Correo,int Celular){
+        RegistroUsuarios A = new RegistroUsuarios();
+        try{
+            SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
+            SaveFileSecreterario.agregarSecretario(new Secretario(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
+            SaveFileSecreterario.cerrarArchivo();
+            JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado los datos");
+        }
+        catch (IOException ex){
+           JOptionPane.showMessageDialog(A,"No se pueden ingresar los datos","Error",JOptionPane.WARNING_MESSAGE);
+        }
+    }
     public void ValidarLogin (String usuario, String contrasena){
         Login A = new Login();
         try{
@@ -44,17 +56,13 @@ public class Secretario extends Usuario{
             if (SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistroC(contrasena)).getContrasena().equals(contrasena)&&
             SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(usuario)).getId().equals(usuario)){
             JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado con exitos");
-            //A.setVisible(false);
-            
+            }
+        }
+        catch(IOException e) {
+        JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NullPointerException ex){
+        JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    catch(IOException e) {
-        JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-    }
-    catch(NullPointerException ex){
-        JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-   }
-   
-}
-    
 }

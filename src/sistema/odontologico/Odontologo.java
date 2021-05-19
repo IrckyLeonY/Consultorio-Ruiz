@@ -36,6 +36,18 @@ public class Odontologo extends Usuario{
     public int getTamanoOdontologo(){
         return getTamanoUsuario()+Id.length()*2+Contrasena.length()*2;
     }
+    public void RegistrarOdontologo(String Id,String Contrasena,String Nombre, String Apellido,String Cargo,String Correo,int Celular){
+        RegistroUsuarios A = new RegistroUsuarios();
+        try{
+            SaveFileOdontologo.crearFileOdontologo(new File ("odontologos.dat"));
+            SaveFileOdontologo.agregarOdontologo(new Odontologo(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
+            SaveFileOdontologo.cerrarArchivo();
+            JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado los datos");
+        }
+        catch (IOException ex){
+            JOptionPane.showMessageDialog(A,"No se pueden ingresar los datos","Error",JOptionPane.WARNING_MESSAGE);
+        }
+    }
     public void ValidarLogin(String usuario, String contrasena){
         Login A = new Login();
         try{

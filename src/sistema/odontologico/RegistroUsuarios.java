@@ -21,6 +21,9 @@ public class RegistroUsuarios extends javax.swing.JDialog {
      */
     
     fuentes tipofuentes;
+    public RegistroUsuarios(){
+        
+    }
     public RegistroUsuarios(java.awt.Frame parent, boolean modal) {
         initComponents();
         tipofuentes = new fuentes();
@@ -180,6 +183,21 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         String Cargo = comboCargo.getSelectedItem().toString();
         String Correo = txtCorreo.getText();
         int Celular = Integer.parseInt(txtCelular.getText());
+        
+        if ("Odontologo".equals(Cargo)){
+            Odontologo Odon = new Odontologo();
+            Odon.RegistrarOdontologo(Id, Contrasena, Nombre, Apellido, Cargo, Correo, Celular);
+            Limpiar();
+        }
+        else if("Secretario".equals(Cargo)){
+            Secretario secre = new Secretario();
+            secre.RegistrarSecretario(Id, Contrasena, Nombre, Apellido, Cargo, Correo, Celular);
+            Limpiar();
+                  
+        }
+        //Ingreso de datos
+        
+        /*
         if ("Odontologo".equals(Cargo)){
         //Ingreso de datos
         try {
@@ -206,6 +224,7 @@ public class RegistroUsuarios extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this,"No se pueden ingresar los datos","Error",JOptionPane.WARNING_MESSAGE);
         }
         }
+        */
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void Limpiar(){
