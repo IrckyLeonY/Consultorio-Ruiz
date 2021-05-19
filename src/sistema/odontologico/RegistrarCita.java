@@ -139,16 +139,16 @@ public class RegistrarCita extends javax.swing.JDialog {
         String aux = txtBuscar.getText();
         try {
             // TODO add your handling code here:
-        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
-        int i = BinarioPaciente.buscarCedula(aux);
+        SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = SaveFilePaciente.buscarCedula(aux);
         if( i==-1) {
               JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
               return;
             }
-                field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
-                field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
-                field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
-                BinarioPaciente.cerrarArchivo();
+                field1.setText(SaveFilePaciente.getPaciente(i).getNombres()+SaveFilePaciente.getPaciente(i).getApellidos());
+                field2.setText(SaveFilePaciente.getPaciente(i).getTelefono());
+                field3.setText(SaveFilePaciente.getPaciente(i).getCorreo());
+                SaveFilePaciente.cerrarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -194,8 +194,8 @@ public class RegistrarCita extends javax.swing.JDialog {
         String aux = txtBuscar.getText();
         try {
             // TODO add your handling code here:
-        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
-        int i = BinarioPaciente.buscarCedula(aux);
+        SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
+        int i = SaveFilePaciente.buscarCedula(aux);
         if( i==-1) {
               JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
               return;
@@ -203,14 +203,14 @@ public class RegistrarCita extends javax.swing.JDialog {
                 //field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
                 //field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
                 //field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
-                documento.add(new Paragraph("Nombre Paciente: "+BinarioPaciente.getPaciente(i).getNombres()+" "+BinarioPaciente.getPaciente(i).getApellidos()));
-                documento.add(new Paragraph("Cedula Paciente: "+BinarioPaciente.getPaciente(i).getCedula()));
-                documento.add(new Paragraph("Fe_Na Paciente: "+BinarioPaciente.getPaciente(i).getFecNac()));
-                documento.add(new Paragraph("Genero Paciente: "+BinarioPaciente.getPaciente(i).getGenero()));
-                documento.add(new Paragraph("Telefono Paciente: "+BinarioPaciente.getPaciente(i).getTelefono()));
-                documento.add(new Paragraph("Correo Paciente: "+BinarioPaciente.getPaciente(i).getCorreo()));
+                documento.add(new Paragraph("Nombre Paciente: "+SaveFilePaciente.getPaciente(i).getNombres()+" "+SaveFilePaciente.getPaciente(i).getApellidos()));
+                documento.add(new Paragraph("Cedula Paciente: "+SaveFilePaciente.getPaciente(i).getCedula()));
+                documento.add(new Paragraph("Fe_Na Paciente: "+SaveFilePaciente.getPaciente(i).getFecNac()));
+                documento.add(new Paragraph("Genero Paciente: "+SaveFilePaciente.getPaciente(i).getGenero()));
+                documento.add(new Paragraph("Telefono Paciente: "+SaveFilePaciente.getPaciente(i).getTelefono()));
+                documento.add(new Paragraph("Correo Paciente: "+SaveFilePaciente.getPaciente(i).getCorreo()));
                 
-                BinarioPaciente.cerrarArchivo();
+                SaveFilePaciente.cerrarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }

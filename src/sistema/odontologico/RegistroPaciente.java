@@ -23,6 +23,9 @@ public class RegistroPaciente extends javax.swing.JDialog {
      * Creates new form RegistroPaciente
      */
     fuentes tipofuentes;
+    public RegistroPaciente(){
+        
+    }
     public RegistroPaciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();    
@@ -158,17 +161,8 @@ public class RegistroPaciente extends javax.swing.JDialog {
         Date Fecha = jDateChooser1.getDate();
         SimpleDateFormat FechaNacimiento = new SimpleDateFormat("dd/MM/YYYY");
         String FecNac=FechaNacimiento.format(Fecha);
-            //Ingreso de datos
-            try {//
-                BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
-                BinarioPaciente.agregarPaciente(new Paciente(Nombres, Apellidos, Correo,Telefono,Genero,Cedula,FecNac));
-                BinarioPaciente.cerrarArchivo();
-                Limpiar();
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado los datos");
-            }
-            catch (IOException ex){
-                JOptionPane.showMessageDialog(this,"No se pueden ingresar los datos","Error",JOptionPane.WARNING_MESSAGE);
-            }
+        Paciente Pac = new Paciente(Nombres, Apellidos, Correo,Telefono,Genero,Cedula,FecNac);
+        Pac.GuardarPaciente(Nombres, Apellidos, Telefono, Cedula, Genero, Cedula, FecNac);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

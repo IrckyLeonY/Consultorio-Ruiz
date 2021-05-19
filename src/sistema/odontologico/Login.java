@@ -150,14 +150,52 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String aux = jTextField1.getText().trim();
         String aux1 = jPasswordField1.getText().trim();
-        
         String op = combocargo.getSelectedItem().toString();
         
+        
+            try{
+                SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
+                SaveFileOdontologo.crearFileOdontologo(new File("odontologos.dat"));
+                if(SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getCargo().equals("Secretario")){
+                if (SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
+                SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getId().equals(aux)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalSecretaria A = new PrincipalSecretaria(this,true);
+                A.setVisible(true);}
+            }
+                JOptionPane.showMessageDialog(this,"1");
+                /*
+                else if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getCargo().equals("Odontologo")){
+                if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
+                SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
+                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
+                this.setVisible(false);
+                PrincipalDoctor A = new PrincipalDoctor(this,true);
+                A.setVisible(true);
+                
+            }   
+                }
+                */
+            }
+            catch(IOException e) {
+            JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        
+        
+
+            
+        
+        /*
         if (op.equals("Secretario")){
             try{
-                RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
-                if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
-                RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
+                SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
+                if (SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
+                SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getId().equals(aux)){
                 JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
                 PrincipalSecretaria A = new PrincipalSecretaria(this,true);
@@ -167,75 +205,32 @@ public class Login extends javax.swing.JFrame {
             catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
+            catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
-        else{
+        else if (op.equals("Odontologo")){
             try{
-                AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
-                if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
-                AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
+                SaveFileOdontologo.crearFileOdontologo(new File("odontologos.dat"));
+                if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
+                SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
                 JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
                 this.setVisible(false);
                 PrincipalDoctor A = new PrincipalDoctor(this,true);
                 A.setVisible(true);
-            }
-        }
-        catch(IOException e) {
-            JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        }
-        
-        /*
-        
-        //Ingreso por Doctor
-        try{
-            //RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
-            AccesoOdontologo.crearFileOdontologo(new File("odontologos.dat"));
-            JOptionPane.showMessageDialog(this, "entro 3", "Error", JOptionPane.ERROR_MESSAGE);
-                if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
-                AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
-                JOptionPane.showMessageDialog(this, AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getCargo());
-                    JOptionPane.showMessageDialog(this, "entro 4", "Error", JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalDoctor A = new PrincipalDoctor(this,true);
-                A.setVisible(true);
-            /*
-                if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getCargo().equals("Secretario")){
-                    JOptionPane.showMessageDialog(this, "entro 1", "Error", JOptionPane.ERROR_MESSAGE);
-                    JOptionPane.showMessageDialog(this, RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getCargo());
-                if (RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
-                RandomSecreterario.getSecretario(RandomSecreterario.buscarRegistro(aux)).getId().equals(aux)){
-                    JOptionPane.showMessageDialog(this, "entro 2", "Error", JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalSecretaria A = new PrincipalSecretaria(this,true);
-                A.setVisible(true);
-            }
-            */
-            //}
-            /*
-                 JOptionPane.showMessageDialog(this, AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getCargo());
-           
-                
-                    JOptionPane.showMessageDialog(this, "entro 3", "Error", JOptionPane.ERROR_MESSAGE);
-                if (AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
-                AccesoOdontologo.getOdontologo(AccesoOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
-                    JOptionPane.showMessageDialog(this, "entro 4", "Error", JOptionPane.ERROR_MESSAGE);
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalDoctor A = new PrincipalDoctor(this,true);
-                A.setVisible(true);
-                //Interfaz.AreaAdmin.append(AccessoAleatorioAdmin.getAdministrador(AccessoAleatorioAdmin.buscarRegistroUsuario(aux)).toString());
-                
             }   
-            
-              
-            
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NullPointerException ex){
+                JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
         */
+       
         
         
     }//GEN-LAST:event_comboCargoActionPerformed

@@ -13,7 +13,7 @@ import java.io.RandomAccessFile;
  *
  * @author riky_
  */
-public class AccesoOdontologo {
+public class SaveFileOdontologo {
         //Atributos de Acceso Aleatorio de empleado
     private static RandomAccessFile flujo; //Clase Random Access File
     private static int numeroRegistros; //Cuantos empleados hay en el archivo

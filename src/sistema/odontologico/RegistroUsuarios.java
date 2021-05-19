@@ -183,9 +183,9 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         if ("Odontologo".equals(Cargo)){
         //Ingreso de datos
         try {
-            AccesoOdontologo.crearFileOdontologo(new File ("odontologos.dat"));
-            AccesoOdontologo.agregarOdontologo(new Odontologo(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
-            AccesoOdontologo.cerrarArchivo();
+            SaveFileOdontologo.crearFileOdontologo(new File ("odontologos.dat"));
+            SaveFileOdontologo.agregarOdontologo(new Odontologo(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
+            SaveFileOdontologo.cerrarArchivo();
             Limpiar();
             JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado los datos");
         }
@@ -196,9 +196,9 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         else if("Secretario".equals(Cargo)){
         //Ingreso de datos
         try {
-            RandomSecreterario.crearFileSecretario(new File("secretarios.dat"));
-            RandomSecreterario.agregarSecretario(new Secretario(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
-            RandomSecreterario.cerrarArchivo();
+            SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
+            SaveFileSecreterario.agregarSecretario(new Secretario(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
+            SaveFileSecreterario.cerrarArchivo();
             Limpiar();
             JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado los datos");
         }

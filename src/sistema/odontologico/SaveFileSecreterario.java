@@ -11,15 +11,16 @@ import java.io.RandomAccessFile;
 
 /**
  *
- * @author User
+ * @author riky_
  */
-public class BinarioPaciente {
+public class SaveFileSecreterario {
+    //Atributos de Acceso Aleatorio de empleado
     private static RandomAccessFile flujo; //Clase Random Access File
     private static int numeroRegistros; //Cuantos empleados hay en el archivo
-    private static int tamanoRegistros = 250; //Tamano bytes por registro
+    private static int tamanoRegistros = 218; //Tamano bytes por registro
     
     //Metodo crear File Empleado = crea un flujo a un archivo RandomAccessFile, con un parametro file es decir la ruta
-    public static void crearFilePaciente(File archivo) throws IOException {
+    public static void crearFileSecretario(File archivo) throws IOException {
         //Comprobar la ruta del archivo, puede que el archivo no exista o que no sea una ruta 
         if (archivo.exists() && !archivo.isFile()){
             throw new IOException(archivo.getName() + "No es un archivo");
@@ -35,21 +36,21 @@ public class BinarioPaciente {
         flujo.close();
     }
     //Metodo boleano que  nos indica si se pudo o no agregar/guardar al empleado
-    public static boolean setPaciente (int i, Paciente paciente) throws IOException{
+    public static boolean setSecretario (int i, Secretario secre) throws IOException{
         if (i >= 0 && i <= getNumeroRegistros()){
-            if (paciente.getTamanoPaciente()>tamanoRegistros){
+            if (secre.getTamanoSecretario()>tamanoRegistros){
                 System.out.println("Tamano excedido de registro");
             } else {
             //Situamos el puntero sobre el tamano registro
             flujo.seek(i*tamanoRegistros);
             //Agrega el registro al archivo
-            flujo.writeUTF(paciente.getNombres());
-            flujo.writeUTF(paciente.getApellidos());
-            flujo.writeUTF(paciente.getGenero());
-            flujo.writeUTF(paciente.getCorreo());
-            flujo.writeUTF(paciente.getTelefono());
-            flujo.writeUTF(paciente.getCedula());
-            flujo.writeUTF(paciente.getFecNac());
+            flujo.writeUTF(secre.getId());
+            flujo.writeUTF(secre.getContrasena());
+            flujo.writeUTF(secre.getNombre());
+            flujo.writeUTF(secre.getApellido());
+            flujo.writeUTF(secre.getCargo());
+            flujo.writeUTF(secre.getCorreo_Electronico());
+            flujo.writeInt(secre.getCelular());
             
             return true;
         }
@@ -59,32 +60,62 @@ public class BinarioPaciente {
         return false;
     }
     //Este metodo nos permite anadir un empleado desde la clase principal, y se lo coloca al final 
-    public static void agregarPaciente (Paciente paciente) throws IOException{
-        if (setPaciente(numeroRegistros, paciente)){
+    public static void agregarSecretario (Secretario secre) throws IOException{
+        if (setSecretario(numeroRegistros, secre)){
             numeroRegistros++;
         }
     }
     //Este metodo nos permite obtener el registro del empleado que se encuentre en ese registro medinate el putnero, devolviendo el objeto persona
-    public static Paciente getPaciente (int i) throws IOException {
+    public static Odontologo getSecretario (int i) throws IOException {
         if (i >= 0 && i <= getNumeroRegistros()){
             flujo.seek(i*tamanoRegistros);
-            return new Paciente (flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF());
+            return new Odontologo (flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readUTF(),flujo.readInt());
         }else{
             System.out.println("Numero de registros fuera del limite");
             return null;
         }
     }
-        //Metodo de Buscar por Id
-    public static int buscarCedula (String busqueda) throws IOException{
+    //Metodo de Buscar por Id
+    public static int buscarRegistro (String busqueda) throws IOException{
         String aux;
         if (busqueda == null){
             return -1;
         }
         for (int i = 0; i < getNumeroRegistros(); i++){
             flujo.seek(i*tamanoRegistros);
-            aux = getPaciente(i).getCedula();
+            aux = getSecretario(i).getId();
             if (aux.equals(busqueda)){
                 return i;
+            }
+        }
+        return -1;
+    }
+    //Metodo de Buscar por contrasena
+    public static int buscarRegistroC (String busqueda) throws IOException{
+        String aux;
+        if (busqueda == null){
+            return -1;
+        }
+        for (int i = 0; i < getNumeroRegistros(); i++){
+            flujo.seek(i*tamanoRegistros);
+            aux = getSecretario(i).getContrasena();
+            if (aux.equals(busqueda)){
+                return i; //retorna la posicion.
+            }
+        }
+        return -1;
+    }
+    //
+    public static int buscarCargo (String busqueda) throws IOException{
+        String aux;
+        if (busqueda == null){
+            return -1;
+        }
+        for (int i = 0; i < getNumeroRegistros(); i++){
+            flujo.seek(i*tamanoRegistros);
+            aux = getSecretario(i).getCargo();
+            if (aux.equals(busqueda)){
+                return i; //retorna la posicion.
             }
         }
         return -1;
@@ -104,9 +135,4 @@ public class BinarioPaciente {
     public static int getTamanoRegistros() {
         return tamanoRegistros;
     }
-
-    static void crearFileOdontologo(File file) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

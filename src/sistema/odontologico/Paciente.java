@@ -5,6 +5,10 @@
  */
 package sistema.odontologico;
 
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author riky_
@@ -57,5 +61,18 @@ public class Paciente {
     }
     public int getTamanoPaciente(){
      return Nombres.length()*2+ Apellidos.length()*2+Genero.length()*2+Correo.length()*2+Telefono.length()*2+Cedula.length()*2+FecNac.length()*2;
+    }
+    public void GuardarPaciente(String Nombre, String Apellido, String Correo_Electronico, String Celular, String Genero, String Cedula,String FecNac){
+        RegistroPaciente A = new RegistroPaciente();
+        try {//
+                SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
+                SaveFilePaciente.agregarPaciente(new Paciente(Nombres, Apellidos, Correo,Telefono,Genero,Cedula,FecNac));
+                SaveFilePaciente.cerrarArchivo();
+                JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado los datos");
+            }
+            catch (IOException ex){
+                JOptionPane.showMessageDialog(A,"No se pueden ingresar los datos","Error",JOptionPane.WARNING_MESSAGE);
+                
+            }
     }
 }

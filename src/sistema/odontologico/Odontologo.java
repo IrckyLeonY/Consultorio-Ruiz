@@ -18,8 +18,6 @@ public class Odontologo extends Usuario{
         this.Id = Id;
         this.Contrasena = Contrasena;
     }
-
-   
     public String getId() {
         return Id;
     }
