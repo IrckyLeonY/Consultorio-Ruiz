@@ -214,7 +214,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Paragraph parrafo2 = new Paragraph("NOTA: SE SOLICITA DE ANTEMANO VENIR 20 MINUTOS ANTES MMV HDP, CUIDATE EL OSICO");
+        Paragraph parrafo2 = new Paragraph("NOTA: SE SOLICITA VENIR 20 MINUTOS ANTES");
         parrafo1.setAlignment(0);
         documento.add(parrafo2);
         //Cierre
