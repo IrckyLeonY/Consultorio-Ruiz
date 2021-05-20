@@ -10,6 +10,10 @@ package sistema.odontologico;
  *
  * @author riky_
  */
+import Clases.Odontologo;
+import Clases.Secretario;
+import Clases.SaveFileOdontologo;
+import Clases.SaveFileSecreterario;
 import Fuentes.fuentes;
 import java.io.File;
 import java.io.IOException;
@@ -45,12 +49,10 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         comboCargo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        combocargo = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -72,10 +74,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Usuario*");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Cargo*");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
-
         jTextField1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 280, 30));
 
@@ -90,14 +88,11 @@ public class Login extends javax.swing.JFrame {
                 comboCargoActionPerformed(evt);
             }
         });
-        jPanel1.add(comboCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, -1, -1));
+        jPanel1.add(comboCargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Contraseña*");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
-
-        combocargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Odontologo", "Secretario" }));
-        jPanel1.add(combocargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 280, 40));
 
         jMenu1.setText("Registro");
 
@@ -150,65 +145,33 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String aux = jTextField1.getText().trim();
         String aux1 = jPasswordField1.getText().trim();
-        String op = combocargo.getSelectedItem().toString();
+        
         Secretario secre = new Secretario();
         Odontologo doc = new Odontologo();
-        if (op.equals("Secretario")){
-            secre.ValidarLogin(aux, aux1);
-            this.setVisible(false);
-            PrincipalSecretaria A = new PrincipalSecretaria(this,true);
-            A.setVisible(true); 
-        }
-        else if (op.equals("Odontologo")){
-            doc.ValidarLogin(aux, aux1);
-            this.setVisible(false);
-            PrincipalDoctor A = new PrincipalDoctor(this,true);
-            A.setVisible(true);
-        }
-        /*
-        if (op.equals("Secretario")){
-            try{
-                SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
-                if (SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistroC(aux1)).getContrasena().equals(aux1)&&
-                SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getId().equals(aux)){
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalSecretaria A = new PrincipalSecretaria(this,true);
-                A.setVisible(true);  
+        try{
+                SaveFileSecreterario.crearFileSecretario(new File("usuarios.dat"));
+                SaveFileOdontologo.crearFileOdontologo(new File("usuarios.dat"));
+                    if(SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(aux)).getCargo().equals("Secretario") ){
+                        JOptionPane.showMessageDialog(this,"Secre");
+                        secre.ValidarLogin(aux, aux1);
+                        this.setVisible(false);
+                        MenuSecretaria A = new MenuSecretaria(this,true);
+                        A.setVisible(true);                         
+                    }                
+                    else if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getCargo().equals("Odontologo")){
+                        JOptionPane.showMessageDialog(this,"Odont");
+                        doc.ValidarLogin(aux, aux1);
+                        this.setVisible(false);
+                        MenuDoctor A = new MenuDoctor(this,true);
+                        A.setVisible(true);
+                    }                
             }
-        }
             catch(IOException e) {
-            JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(this, "Error no coincide codigo IO", "Error", JOptionPane.ERROR_MESSAGE);            
+            }
             catch(NullPointerException ex){
                 JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            
-        }
-        else if (op.equals("Odontologo")){
-            try{
-                SaveFileOdontologo.crearFileOdontologo(new File("odontologos.dat"));
-                if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(aux)).getId().equals(aux) && 
-                SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistroC(aux1)).getContrasena().equals(aux1)){
-                JOptionPane.showMessageDialog(this,"¡Éxito!\nSe han ingresado con exitos");
-                this.setVisible(false);
-                PrincipalDoctor A = new PrincipalDoctor(this,true);
-                A.setVisible(true);
-            }   
-        }
-        catch(IOException e) {
-            JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NullPointerException ex){
-                JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            
-        }
-        */
-        
-       
-        
-        
     }//GEN-LAST:event_comboCargoActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -254,11 +217,9 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton comboCargo;
-    private javax.swing.JComboBox<String> combocargo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;

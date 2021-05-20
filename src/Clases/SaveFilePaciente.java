@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sistema.odontologico;
+package Clases;
 
 import java.io.File;
 import java.io.IOException;

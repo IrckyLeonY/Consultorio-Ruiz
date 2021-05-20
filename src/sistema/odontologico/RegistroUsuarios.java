@@ -11,6 +11,8 @@ package sistema.odontologico;
  * @author riky_
  */
 import Fuentes.fuentes;
+import Clases.Odontologo;
+import Clases.Secretario;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -27,7 +29,7 @@ public class RegistroUsuarios extends javax.swing.JDialog {
     public RegistroUsuarios(java.awt.Frame parent, boolean modal) {
         initComponents();
         tipofuentes = new fuentes();
-        jLabel1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 50));
+        jLabel1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 40));
         jLabel2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel3.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel4.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
@@ -35,7 +37,7 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         jLabel6.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel7.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel8.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
-        jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
+        jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel9, "src/Imagenes/doctor1.png");
         
     }
@@ -50,7 +52,6 @@ public class RegistroUsuarios extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -68,65 +69,51 @@ public class RegistroUsuarios extends javax.swing.JDialog {
         comboCargo = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(246, 245, 244));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Registro Usuario Consultorio");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 300, 60));
-
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Nombre:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Apellido");
+        jLabel3.setText("Apellido:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Correo Electrónico");
+        jLabel4.setText("Correo Electrónico:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Cargo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, -1, -1));
+        jLabel5.setText("Cargo:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 130, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel6.setText("Celular");
+        jLabel6.setText("Celular:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("ID_Usuario");
+        jLabel7.setText("ID_Usuario:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Contraseña");
+        jLabel8.setText("Contraseña:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 310, -1, -1));
-
-        txtNombre.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, 200, -1));
-
-        txtApellido.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 200, -1));
 
-        txtCorreo.setBackground(new java.awt.Color(204, 204, 204));
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
             }
         });
         jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 200, -1));
-
-        txtCelular.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(txtCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 200, -1));
-
-        txtId.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 200, -1));
-
-        txtContrasena.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.add(txtContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 200, -1));
 
         jButton1.setText("Ingresar");
@@ -143,15 +130,24 @@ public class RegistroUsuarios extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(246, 245, 244));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Registro Usuario Consultorio");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(319, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 390));

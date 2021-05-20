@@ -12,16 +12,16 @@ import java.awt.Color;
  *
  * @author User
  */
-public class PrincipalSecretaria extends javax.swing.JFrame {
+public class MenuSecretaria extends javax.swing.JFrame {
 
     /**
-     * Creates new form PrincipalSecretaria
+     * Creates new form MenuSecretaria
      */
      fuentes tipofuentes;
-     public PrincipalSecretaria(){
+     public MenuSecretaria(){
          
      }
-    public PrincipalSecretaria(java.awt.Frame parent, boolean modal) {
+    public MenuSecretaria(java.awt.Frame parent, boolean modal) {
         initComponents();
         tipofuentes = new fuentes();
         //bRegistrarPaciente.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
@@ -130,7 +130,7 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
 
     private void bAgendarCita1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgendarCita1ActionPerformed
         // TODO add your handling code here:
-        Citas ci1 = new Citas (this, true);
+        MenuCitas ci1 = new MenuCitas (this, true);
         ci1.setVisible(true);
        
     }//GEN-LAST:event_bAgendarCita1ActionPerformed
@@ -152,20 +152,21 @@ public class PrincipalSecretaria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PrincipalSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PrincipalSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PrincipalSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PrincipalSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuSecretaria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PrincipalSecretaria dialog = new PrincipalSecretaria(new javax.swing.JFrame(), true);
+                MenuSecretaria dialog = new MenuSecretaria(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

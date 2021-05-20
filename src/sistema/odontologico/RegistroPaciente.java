@@ -6,6 +6,7 @@
 package sistema.odontologico;
 
 import Fuentes.fuentes;
+import Clases.Paciente;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -73,9 +74,9 @@ public class RegistroPaciente extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         comboGenero = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -98,6 +99,7 @@ public class RegistroPaciente extends javax.swing.JDialog {
         jLabel7.setText("Fecha de nacimiento:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(246, 245, 244));
         jButton1.setText("Guardar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,23 +124,28 @@ public class RegistroPaciente extends javax.swing.JDialog {
         getContentPane().add(comboGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, 140, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, 140, -1));
 
-        jLabel5.setText("Registro Paciente");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 270, 40));
-
         jLabel8.setText("Genero:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(246, 245, 244));
 
+        jLabel5.setText("  Registro Paciente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(140, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(310, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 410));
@@ -163,6 +170,7 @@ public class RegistroPaciente extends javax.swing.JDialog {
         String FecNac=FechaNacimiento.format(Fecha);
         Paciente Pac = new Paciente(Nombres, Apellidos, Correo,Telefono,Genero,Cedula,FecNac);
         Pac.GuardarPaciente(Nombres, Apellidos, Telefono, Cedula, Genero, Cedula, FecNac);
+        Limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

@@ -6,6 +6,8 @@
 package sistema.odontologico;
 
 import Fuentes.fuentes;
+import Clases.Paciente;
+import Clases.SaveFilePaciente;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
@@ -45,10 +47,11 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel4.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel6.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 50));
+        jLabel5.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         Cedula.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
         jButton2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel3, "src/Imagenes/393052.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel3, "src/Imagenes/agenda.png");
     }
 
     /**
@@ -60,6 +63,8 @@ public class RegistrarCita extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -71,13 +76,16 @@ public class RegistrarCita extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         Cedula = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ":00", ":15", ":30", ":45" }));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,7 +116,7 @@ public class RegistrarCita extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 100, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 100, -1));
 
         Cedula.setText("Cedula:");
         jPanel1.add(Cedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
@@ -121,14 +129,11 @@ public class RegistrarCita extends javax.swing.JDialog {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, 80, -1));
 
-        jCalendar1.setBackground(new java.awt.Color(246, 245, 244));
-        jPanel1.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 310, 220));
-
-        jLabel4.setText("Codigo Cita");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
+        jLabel4.setText("Codigo Cita:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, -1, -1));
 
         jTextField1.setEditable(false);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 180, -1));
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 180, -1));
 
         jLabel7.setText("Nombre: ");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
@@ -136,13 +141,13 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel6.setText("Registrar Cita");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 240, 50));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, -1, -1));
+        jDateChooser1.setDateFormatString("yyyy/MM/dd HH:mm");
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 180, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ":00", ":15", ":30", ":45" }));
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, -1, -1));
+        jLabel5.setText("Fecha y hora:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 450));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -150,6 +155,8 @@ public class RegistrarCita extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String aux = txtBuscar.getText();
         Paciente pac = new Paciente();
+        int x= (int) (Math.random()*10000+1000);
+        jTextField1.setText(Integer.toString(x));
         try{
             int i = pac.BuscarCedula(aux);
             field1.setText(SaveFilePaciente.getPaciente(i).getNombres()+SaveFilePaciente.getPaciente(i).getApellidos());
@@ -221,7 +228,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         String aux = txtBuscar.getText();
         String hora = jComboBox1.getSelectedItem().toString();
         String minuto = jComboBox2.getSelectedItem().toString();
-        Date Fecha = jCalendar1.getDate();
+        Date Fecha = jDateChooser1.getDate();
         SimpleDateFormat FechaNacimiento = new SimpleDateFormat("dd/MM/YYYY");
         String FecNac=FechaNacimiento.format(Fecha);
         try {
@@ -303,13 +310,14 @@ public class RegistrarCita extends javax.swing.JDialog {
     private javax.swing.JTextField field3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

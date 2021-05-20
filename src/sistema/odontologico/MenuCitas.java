@@ -10,21 +10,21 @@ import Fuentes.fuentes;
  *
  * @author patty
  */
-public class Citas extends javax.swing.JFrame {
+public class MenuCitas extends javax.swing.JFrame {
 
     /**
-     * Creates new form Citas
+     * Creates new form MenuCitas
      */
     fuentes tipofuentes;
-    public Citas(java.awt.Frame parent, boolean modal) {
+    public MenuCitas(java.awt.Frame parent, boolean modal) {
         initComponents();
         tipofuentes = new fuentes();
         jButton2.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jButton1.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel6.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel2, "src/Imagenes/agenda.png");
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/Imagenes/hora.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel5, "src/Imagenes/iconu.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/Imagenes/agendadecitas.png");
     }
 
     /**
@@ -49,8 +49,8 @@ public class Citas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 140, 140, 140));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 150, 140));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 160, 160));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 160, 140));
 
         jButton1.setBackground(new java.awt.Color(246, 245, 244));
         jButton1.setText("Ver cita");
@@ -82,21 +82,22 @@ public class Citas extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 330, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 330));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 330));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
+       VerCita vercita1 = new VerCita (this, true);
+       vercita1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -122,20 +123,21 @@ public class Citas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Citas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuCitas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Citas dialog = new Citas(new javax.swing.JFrame(), true);
+                MenuCitas dialog = new MenuCitas(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
