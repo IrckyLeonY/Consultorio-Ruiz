@@ -159,6 +159,7 @@ public class RegistroPaciente extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         String Nombres = txtN.getText();
         String Apellidos = txtA.getText();
         String Correo = txtCo.getText();
@@ -169,7 +170,14 @@ public class RegistroPaciente extends javax.swing.JDialog {
         SimpleDateFormat FechaNacimiento = new SimpleDateFormat("dd/MM/YYYY");
         String FecNac=FechaNacimiento.format(Fecha);
         Paciente Pac = new Paciente(Nombres, Apellidos, Correo,Telefono,Genero,Cedula,FecNac);
-        Pac.GuardarPaciente(Nombres, Apellidos, Telefono, Cedula, Genero, Cedula, FecNac);
+        
+        if (Pac.Validar(Cedula)==true){
+            Pac.GuardarPaciente(Nombres, Apellidos, Correo, Telefono, Genero, Cedula, FecNac);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Paciente No Registrado, cédula corresponde a otro paciente","Error",JOptionPane.WARNING_MESSAGE);
+        }
         Limpiar();
     }//GEN-LAST:event_jButton1ActionPerformed
 

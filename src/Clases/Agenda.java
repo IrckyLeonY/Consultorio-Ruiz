@@ -87,7 +87,7 @@ public class Agenda {
         try{
             SaveFileAgenda.crearFileAgenda(new File ("agenda.dat"));
             if (SaveFileAgenda.ValidarCita(busqueda)==false){
-                
+                return false;
             }
             else{
                 return true;

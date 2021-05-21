@@ -42,7 +42,7 @@ public class Secretario extends Usuario{
     public void RegistrarSecretario(String Id,String Contrasena,String Nombre,String Apellido,String Cargo,String Correo,int Celular){
         RegistroUsuarios A = new RegistroUsuarios();
         try{
-            SaveFileSecreterario.crearFileSecretario(new File("usuarios.dat"));
+            SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
             SaveFileSecreterario.agregarSecretario(new Secretario(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
             SaveFileSecreterario.cerrarArchivo();
             JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado los datos");
@@ -54,13 +54,11 @@ public class Secretario extends Usuario{
     public void ValidarLogin (String usuario, String contrasena){
         Login A = new Login();
         try{
-            SaveFileSecreterario.crearFileSecretario(new File("usuarios.dat"));
-            
+            SaveFileSecreterario.crearFileSecretario(new File("secretarios.dat"));
             if (SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistroC(contrasena)).getContrasena().equals(contrasena)&&
             SaveFileSecreterario.getSecretario(SaveFileSecreterario.buscarRegistro(usuario)).getId().equals(usuario)){
             JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado con exitos");
             }
-            
         }
         catch(IOException e) {
         JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);

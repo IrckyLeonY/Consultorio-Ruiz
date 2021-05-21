@@ -86,7 +86,6 @@ public class RegistrarCita extends javax.swing.JDialog {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         comboFecha = new javax.swing.JComboBox<>();
-        confirmacion = new javax.swing.JTextField();
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ":00", ":15", ":30", ":45" }));
 
@@ -153,10 +152,12 @@ public class RegistrarCita extends javax.swing.JDialog {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
         comboFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
+        comboFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFechaActionPerformed(evt);
+            }
+        });
         jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
-
-        confirmacion.setEditable(false);
-        jPanel1.add(confirmacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 180, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 250));
 
@@ -218,6 +219,10 @@ public class RegistrarCita extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void comboFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFechaActionPerformed
+
     public void GenerarPDF (String nombre) throws FileNotFoundException, DocumentException, IOException {
         FileOutputStream archivo = new FileOutputStream(nombre +".pdf");
         Document documento = new Document();
@@ -262,7 +267,7 @@ public class RegistrarCita extends javax.swing.JDialog {
                 documento.add(new Paragraph("Telefono Paciente: "+SaveFilePaciente.getPaciente(i).getTelefono()));
                 documento.add(new Paragraph("Correo Paciente: "+SaveFilePaciente.getPaciente(i).getCorreo()));
                 documento.add(new Paragraph("Fecha cita:"+" "+ FecNac));
-                documento.add(new Paragraph("Hora cita:"+" "+ hora +" "+ minuto));
+                documento.add(new Paragraph("Hora cita:"+" "+ comboFecha.getSelectedItem().toString()));
                 SaveFilePaciente.cerrarArchivo();
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
@@ -319,7 +324,6 @@ public class RegistrarCita extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cedula;
     private javax.swing.JComboBox<String> comboFecha;
-    private javax.swing.JTextField confirmacion;
     private javax.swing.JTextField field1;
     private javax.swing.JTextField field2;
     private javax.swing.JTextField field3;

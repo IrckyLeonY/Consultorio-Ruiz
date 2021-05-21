@@ -7,8 +7,6 @@ package Clases;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import sistema.odontologico.Login;
 import sistema.odontologico.RegistroUsuarios;
@@ -29,12 +27,11 @@ public class Odontologo extends Usuario{
         super(Nombre, Apellido, Cargo, Correo_Electronico, Celular);
         this.Id = Id;
         this.Contrasena = Contrasena;
-        this.Cargo=Cargo;
     }
     public String getId() {
         return Id;
     }
-   
+
     public String getContrasena() {
         return Contrasena;
     }
@@ -44,7 +41,7 @@ public class Odontologo extends Usuario{
     public void RegistrarOdontologo(String Id,String Contrasena,String Nombre, String Apellido,String Cargo,String Correo,int Celular){
         RegistroUsuarios A = new RegistroUsuarios();
         try{
-            SaveFileOdontologo.crearFileOdontologo(new File ("usuarios.dat"));
+            SaveFileOdontologo.crearFileOdontologo(new File ("odontologos.dat"));
             SaveFileOdontologo.agregarOdontologo(new Odontologo(Id,Contrasena,Nombre,Apellido,Cargo,Correo,Celular));
             SaveFileOdontologo.cerrarArchivo();
             JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado los datos");
@@ -56,14 +53,11 @@ public class Odontologo extends Usuario{
     public void ValidarLogin(String usuario, String contrasena){
         Login A = new Login();
         try{
-                
-                SaveFileOdontologo.crearFileOdontologo(new File("usuarios.dat"));
+                SaveFileOdontologo.crearFileOdontologo(new File("odontologos.dat"));
                 if (SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistro(usuario)).getId().equals(usuario) && 
                 SaveFileOdontologo.getOdontologo(SaveFileOdontologo.buscarRegistroC(contrasena)).getContrasena().equals(contrasena)){
                 JOptionPane.showMessageDialog(A,"¡Éxito!\nSe han ingresado con exitos");
-                
-                }
-               
+            }   
         }
         catch(IOException e) {
             JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
@@ -72,5 +66,7 @@ public class Odontologo extends Usuario{
                 JOptionPane.showMessageDialog(A, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
             }
     }
-     
+    
+    
+    
 }

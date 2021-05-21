@@ -108,5 +108,20 @@ public class SaveFilePaciente {
     static void crearFileOdontologo(File file) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public static boolean ValidarCita (String busqueda) throws IOException{
+        String aux;
+        
+        if (busqueda == null){
+            return false;
+        }
+        for (int i = 0; i < getNumeroRegistros(); i++){
+            flujo.seek(i*tamanoRegistros);
+            aux = getPaciente(i).getCedula();
+            if (aux.equals(busqueda)){
+                return false;
+            }
+        }
+        return true;
+    }
     
 }

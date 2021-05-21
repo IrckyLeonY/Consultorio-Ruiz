@@ -12,21 +12,20 @@ import java.awt.Color;
  *
  * @author patty
  */
-public class MenuDoctor extends javax.swing.JDialog {
+public class MenuDoctor extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuDoctor
      */
     fuentes tipofuentes;
     public MenuDoctor(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
         tipofuentes = new fuentes();
         //bRegistrarPaciente.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         Informe.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         Paciente.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 30));
         jLabel4.setFont(tipofuentes.fuente(tipofuentes.JOA,0, 20));
-        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel3, "src/Imagenes/Informe.png");
+        rsscalelabel.RSScaleLabel.setScaleLabel(jLabel3, "src/Imagenes/2374028.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel2, "src/Imagenes/paciente 2.png");
         rsscalelabel.RSScaleLabel.setScaleLabel(jLabel1, "src/Imagenes/iconu.png");
         Paciente.setBackground(new Color(246,245,244));
@@ -43,34 +42,16 @@ public class MenuDoctor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Paciente = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Informe = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        Paciente = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Paciente.setBackground(new java.awt.Color(246, 245, 244));
-        Paciente.setText("Paciente");
-        Paciente.setBorderPainted(false);
-        Paciente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        Paciente.setPreferredSize(new java.awt.Dimension(111, 23));
-        Paciente.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        Paciente.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
-        Paciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PacienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(Paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 210, 40));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 60, 60));
-
-        jLabel4.setText("Doctor");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 60, 20));
 
         jPanel1.setBackground(new java.awt.Color(246, 245, 244));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -86,11 +67,29 @@ public class MenuDoctor extends javax.swing.JDialog {
                 InformeActionPerformed(evt);
             }
         });
-        jPanel1.add(Informe, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 210, 40));
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 160, 160));
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 160, 160));
+        jPanel1.add(Informe, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 210, 40));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 160, 160));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, 160));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 390));
+        Paciente.setBackground(new java.awt.Color(246, 245, 244));
+        Paciente.setText("Ver Pacientes");
+        Paciente.setBorderPainted(false);
+        Paciente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Paciente.setPreferredSize(new java.awt.Dimension(111, 23));
+        Paciente.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        Paciente.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        Paciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PacienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Paciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 210, 40));
+
+        jLabel4.setText("Doctor");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 60, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 20, 50, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -101,6 +100,9 @@ public class MenuDoctor extends javax.swing.JDialog {
 
     private void PacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PacienteActionPerformed
         // TODO add your handling code here:
+        VerPacientes TablaPaciente= new VerPacientes(this, true);
+        TablaPaciente.setVisible(true);
+        
     }//GEN-LAST:event_PacienteActionPerformed
 
     /**

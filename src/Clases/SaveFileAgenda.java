@@ -81,7 +81,6 @@ public class SaveFileAgenda {
         if (busqueda == null){
             return false;
         }
-        
         for (int i = 0; i < getNumeroRegistros(); i++){
             flujo.seek(i*tamanoRegistros);
             aux = getAgenda(i).getFecha();

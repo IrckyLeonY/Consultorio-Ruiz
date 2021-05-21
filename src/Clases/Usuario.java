@@ -12,7 +12,7 @@ package Clases;
 public class Usuario {
     private String Nombre; //20 = 40 bytes
     private String Apellido;// 20 = 40 bytes
-    String Cargo; // 12 = 24 bytes
+    private String Cargo; // 12 = 24 bytes
     private String Correo_Electronico; //30 = 60 bytes 
     private int Celular; // 4bytes
 
@@ -26,9 +26,9 @@ public class Usuario {
     public Usuario(String Nombre, String Apellido, String Cargo, String Correo_Electronico, int Celular) {
         this.Nombre = Nombre;
         this.Apellido = Apellido;
+        this.Cargo = Cargo;
         this.Correo_Electronico = Correo_Electronico;
         this.Celular = Celular;
-        this.Cargo=Cargo;
     }
     public String getNombre() {
         return Nombre;
@@ -37,11 +37,10 @@ public class Usuario {
     public String getApellido() {
         return Apellido;
     }
+
     public String getCargo() {
         return Cargo;
     }
-
-   
 
     public String getCorreo_Electronico() {
         return Correo_Electronico;

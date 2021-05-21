@@ -86,6 +86,25 @@ public class Paciente {
                 
             }
     }
+    public boolean Validar(String busqueda){
+        RegistroPaciente A = new RegistroPaciente();
+        try{
+            SaveFilePaciente.crearFilePaciente(new File ("pacientes.dat"));
+            if (SaveFilePaciente.ValidarCita(busqueda)==false){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        catch (IOException ex){
+            JOptionPane.showMessageDialog(A,"No se pueden ingresar los datos","Error",JOptionPane.WARNING_MESSAGE);
+        }
+                catch (NullPointerException n){
+            JOptionPane.showMessageDialog(A,"La cita debe contener uan fecha y hora","Error",JOptionPane.WARNING_MESSAGE);
+        }
+        return false;
+    }
     public int BuscarCedula(String cedula){
         RegistrarCita A = new RegistrarCita();
         try{
