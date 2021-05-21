@@ -5,6 +5,7 @@
  */
 package sistema.odontologico;
 
+import Clases.Agenda;
 import Fuentes.fuentes;
 import Clases.Paciente;
 import Clases.SaveFilePaciente;
@@ -19,7 +20,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,6 +85,8 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
+        comboFecha = new javax.swing.JComboBox<>();
+        confirmacion = new javax.swing.JTextField();
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { ":00", ":15", ":30", ":45" }));
 
@@ -141,13 +146,19 @@ public class RegistrarCita extends javax.swing.JDialog {
         jLabel6.setText("Registrar Cita");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 240, 50));
 
-        jDateChooser1.setDateFormatString("yyyy/MM/dd HH:mm");
+        jDateChooser1.setDateFormatString("yyyy/MM/dd ");
         jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 180, -1));
 
         jLabel5.setText("Fecha y hora:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 240));
+        comboFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00" }));
+        jPanel1.add(comboFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, -1, -1));
+
+        confirmacion.setEditable(false);
+        jPanel1.add(confirmacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 180, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 670, 250));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -169,29 +180,30 @@ public class RegistrarCita extends javax.swing.JDialog {
         catch(NullPointerException ex){
         JOptionPane.showMessageDialog(this, "Error no coincide codigo", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        /*
-        try {
-        // TODO add your handling code here:
-        BinarioPaciente.crearFilePaciente(new File ("pacientes.dat"));
-        int i = BinarioPaciente.buscarCedula(aux);
-        if( i==-1) {
-              JOptionPane.showMessageDialog(this, "Ningún registro coincide con los datos de búsqueda.", "Advertencia", JOptionPane.WARNING_MESSAGE);             
-              return;
-            }
-                field1.setText(BinarioPaciente.getPaciente(i).getNombres()+BinarioPaciente.getPaciente(i).getApellidos());
-                field2.setText(BinarioPaciente.getPaciente(i).getTelefono());
-                field3.setText(BinarioPaciente.getPaciente(i).getCorreo());
-                BinarioPaciente.cerrarArchivo();
-        } catch (IOException ex) {
-            Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        Agenda Cita = new Agenda();
+        //Date fecha = new Date(); Fecha actual
+        //SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        //String fc = formato.format(fecha);
+        //Creacion de Cita
+        Date calendario = jDateChooser1.getDate();
+        String horas = comboFecha.getSelectedItem().toString().trim();
+        String FechaCita = Cita.asignarFecha(calendario, horas);
+        //Validacion cita
+
+        if (Cita.Validar(FechaCita)==true){
+            Cita.registrarAgenda(Integer.parseInt(jTextField1.getText()), FechaCita, true, txtBuscar.getText());
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"No se puede registrar cita porque alguien ya la agendo","Error",JOptionPane.WARNING_MESSAGE);
+        }
+       
+        
+        //GENERACION DE PDF
         try{
             GenerarPDF(txtBuscar.getText());
         }
@@ -202,6 +214,7 @@ public class RegistrarCita extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(RegistrarCita.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -305,6 +318,8 @@ public class RegistrarCita extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Cedula;
+    private javax.swing.JComboBox<String> comboFecha;
+    private javax.swing.JTextField confirmacion;
     private javax.swing.JTextField field1;
     private javax.swing.JTextField field2;
     private javax.swing.JTextField field3;
